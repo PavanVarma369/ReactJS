@@ -1,50 +1,8 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var PropTypes = require('prop-types')
-
-class Users extends React.Component {
-  render() {
-    var friend = this.props.list.filter(function(user){
-      return user.friend === true;
-    });
-
-    var nonFriends = this.props.list. filter(function(user){
-      return user.friend !== true;  
-    });
-    return(
-      <div>
-        <h1>Friends</h1>
-        <ul>
-          {friend.map(function(user){
-            return <li key={user.name}>{user.name}</li>
-          })}
-        </ul>
-
-         <h1>Non Friends</h1>
-        <ul>
-          {nonFriends.map(function(user){
-            return <li key={user.name}>{user.name}</li>
-          })}
-        </ul>
-
-      </div>
-    )
-  }
-}
-Users.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    friend: PropTypes.bool.isRequired,
-  })),
-}
+var App = require('./components/App');
+require('./index.css');
 ReactDom.render(
-  <Users list={[
-    { name: 'Tyler', friend: true },
-    { name: 'Ryan', friend: true },
-    { name: 'Michael', friend: false },
-    { name: 'Mikenzi', friend: false },
-    { name: 'Jessica', friend: true },
-    { name: 'Dan', friend: false } ]} 
-  />,
+  <App/>,
   document.getElementById('app')
 );
