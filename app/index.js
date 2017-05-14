@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDom = require('react-dom');
 var PropTypes = require('prop-types')
+
 class Users extends React.Component {
   render() {
     var friend = this.props.list.filter(function(user){
@@ -30,7 +31,12 @@ class Users extends React.Component {
     )
   }
 }
-
+Users.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    friend: PropTypes.bool.isRequired,
+  })),
+}
 ReactDom.render(
   <Users list={[
     { name: 'Tyler', friend: true },
